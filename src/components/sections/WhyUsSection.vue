@@ -49,9 +49,19 @@ import { advantages } from '../../data/landing'
 const cardRefs = ref<HTMLElement[]>([])
 const cardMinHeight = ref<number>(0)
 
-const setCardRef = (el: Element | null): void => {
-  if (el instanceof HTMLElement) {
-    cardRefs.value.push(el)
+import type { ComponentPublicInstance } from 'vue'
+
+
+const setCardRef = (target: Element | ComponentPublicInstance | null): void => {
+  if (!target) return
+
+  if (target instanceof HTMLElement) {
+    cardRefs.value.push(target)
+    return
+  }
+
+  if ('$el' in target && target.$el instanceof HTMLElement) {
+    cardRefs.value.push(target.$el)
   }
 }
 

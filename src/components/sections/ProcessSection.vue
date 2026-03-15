@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
 import { nextTick, onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import RevealBlock from '../common/RevealBlock.vue'
 import SectionHeading from '../common/SectionHeading.vue'
 import { steps } from '../../data/landing'
@@ -54,9 +55,18 @@ import { steps } from '../../data/landing'
 const cardRefs = ref<HTMLElement[]>([])
 const cardMinHeight = ref<number>(0)
 
-const setCardRef = (el: Element | null): void => {
-  if (el instanceof HTMLElement) {
-    cardRefs.value.push(el)
+const setCardRef = (
+  target: Element | ComponentPublicInstance | null
+): void => {
+  if (!target) return
+
+  if (target instanceof HTMLElement) {
+    cardRefs.value.push(target)
+    return
+  }
+
+  if ('$el' in target && target.$el instanceof HTMLElement) {
+    cardRefs.value.push(target.$el)
   }
 }
 
@@ -70,7 +80,6 @@ const updateCardHeights = async (): Promise<void> => {
   if (!cardRefs.value.length) return
 
   cardMinHeight.value = 0
-
   await nextTick()
 
   let maxHeight = 0

@@ -217,19 +217,13 @@ const nextSlide = (): void => {
   currentSlide.value = (currentSlide.value + 1) % heroSlides.value.length
 }
 
-const prevSlide = (): void => {
-  currentSlide.value =
-    (currentSlide.value - 1 + heroSlides.value.length) % heroSlides.value.length
-}
 
 const goToSlide = (index: number): void => {
   currentSlide.value = index
   startAutoplay()
 }
 
-const formatSlideNumber = (value: number): string => {
-  return value.toString().padStart(2, '0')
-}
+
 
 onMounted(() => {
   startAutoplay()
