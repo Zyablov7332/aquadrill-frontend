@@ -35,7 +35,7 @@
         <button type="button" class="brand" @click="goTo('#hero')">
           <span class="brand__badge">A</span>
           <span class="brand__text">
-            <strong>NAME COMPANY</strong>
+            <strong>КурскОблБур</strong>
             <small>бурение скважин в Курске</small>
           </span>
         </button>

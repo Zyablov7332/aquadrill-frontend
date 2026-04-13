@@ -3,7 +3,7 @@
     <v-container class="py-8">
       <div class="footer-grid">
         <div>
-          <h3 class="footer-title">NAME COMPANY</h3>
+          <h3 class="footer-title">КурскОблБур</h3>
           <p class="footer-text">
             Современный лендинг для услуг бурения скважин на воду с понятной структурой
             и современными анимациями.
